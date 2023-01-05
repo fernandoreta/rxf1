@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'rxf1';
+  pageTitle = 'Formula 1 Championship since 2018 to 2022';
 }
