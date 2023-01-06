@@ -21,4 +21,5 @@ export  interface IDrivers {
     nationality : string;
     permanentNumber: string;
     url: string;
+    year?: number;
 }

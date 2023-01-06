@@ -6,31 +6,33 @@
                 [value]="season">{{ season }}</option>
     </select>
     </div>
-<table class="table mb-0"
-            *ngIf="drivers$ | async as drivers">
-    <thead>
-        <tr>
-        <th>Code</th>
-        <th>Date Birth</th>
-        <th>Driver Id</th>
-        <th>Family Name</th>
-        <th>Given Name</th>
-        <th>Nationality</th>
-        <th>Permanent Number</th>
-        <th>URL</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let driver of drivers">
-        <td>{{ driver.code }}</td>
-        <td>{{ driver.dateOfBirth }}</td>
-        <td>{{ driver.driverId }}</td>
-        <td>{{ driver.familyName }}</td>
-        <td>{{ driver.givenName }}</td>
-        <td>{{ driver.nationality }}</td>
-        <td>{{ driver.permanentNumber }}</td>
-        <td>{{ driver.url }}</td>
-        </tr>
-    </tbody>
-    </table>
+<span *ngIf="showError">{{ error }}</span>
+<div *ngIf="!showError">
+    <table class="table mb-0" *ngIf="selectedDrivers$ | async as drivers">
+        <thead>
+            <tr>
+            <th>Code</th>
+            <th>Date Birth</th>
+            <th>Driver Id</th>
+            <th>Family Name</th>
+            <th>Given Name</th>
+            <th>Nationality</th>
+            <th>Permanent Number</th>
+            <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let driver of drivers">
+            <td>{{ driver.code }}</td>
+            <td>{{ driver.dateOfBirth }}</td>
+            <td>{{ driver.driverId }}</td>
+            <td>{{ driver.familyName }}</td>
+            <td>{{ driver.givenName }}</td>
+            <td>{{ driver.nationality }}</td>
+            <td>{{ driver.permanentNumber }}</td>
+            <td>{{ driver.url }}</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
 </div>

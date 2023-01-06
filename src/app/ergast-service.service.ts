@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, EMPTY, map, Observable, tap } from 'rxjs';
+import { catchError, combineLatest, EMPTY, forkJoin, map, Observable, shareReplay, switchMap, tap, zip } from 'rxjs';
 import { IDrivers, IMRDataResponse } from './interfaces/Formula1.interface';
+import { ActivatedRoute, Route } from '@angular/router';
 
 
 @Injectable({
@@ -10,12 +11,5 @@ import { IDrivers, IMRDataResponse } from './interfaces/Formula1.interface';
 export class ErgastServiceService {
 
   constructor(private http: HttpClient) { }
-
-  drivers$: Observable<IDrivers[]> =
-  this.http.get<IMRDataResponse>('https://ergast.com/api/f1/2018/drivers.json')
-  .pipe(
-    map(data => {
-      return data.MRData.DriverTable.Drivers;
-    })
-  );
+  
 }
