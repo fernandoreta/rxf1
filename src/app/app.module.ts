@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { DriversComponent } from './drivers/drivers.component';
 import { RacesComponent } from './races/races.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
