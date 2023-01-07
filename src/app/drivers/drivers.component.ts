@@ -27,7 +27,7 @@ export class DriversComponent implements AfterViewInit  {
       return this.http.get<IMRDataResponse>(`https://ergast.com/api/f1/${selectedYear}/drivers.json`)
       .pipe(
         map(data => {
-          return data.MRData.DriverTable.Drivers;
+          return data?.MRData?.DriverTable?.Drivers;
         })
       )
     }),

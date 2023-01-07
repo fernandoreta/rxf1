@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, catchError, EMPTY, map, switchMap } from 'rxjs';
-import { ErgastServiceService } from '../ergast-service.service';
 import { IMRDataResponse } from '../interfaces/Formula1.interface';
 
 @Component({
-  selector: 'app-races',
-  templateUrl: './races.component.html',
-  styleUrls: ['./races.component.scss']
+  selector: 'app-qualifying-results',
+  templateUrl: './qualifying-results.component.html',
+  styleUrls: ['./qualifying-results.component.scss']
 })
-export class RacesComponent implements OnInit {
+export class QualifyingResultsComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
@@ -17,12 +16,12 @@ export class RacesComponent implements OnInit {
   
   private yearSelectedSubject = new BehaviorSubject<number>(this.seasons[0]);
   yearSelectedAction$ = this.yearSelectedSubject.asObservable();
-  races$ = this.yearSelectedAction$.pipe(
+  results$ = this.yearSelectedAction$.pipe(
     switchMap((selectedYear: number) => {
-      return this.http.get<IMRDataResponse>(`https://ergast.com/api/f1/${selectedYear}/last/results.json`)
+      return this.http.get<IMRDataResponse>(`https://ergast.com/api/f1/${selectedYear}/qualifying.json`)
       .pipe(
         map(data => {
-          const filterData = data.MRData?.RaceTable?.Races[0]?.Results;
+          const filterData = data.MRData?.RaceTable?.Races[0]?.QualifyingResults;
           return filterData;
         })
       )

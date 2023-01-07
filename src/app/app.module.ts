@@ -10,13 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QualifyingResultsComponent } from './qualifying-results/qualifying-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DriversComponent,
     RacesComponent,
-    HomeComponent
+    HomeComponent,
+    QualifyingResultsComponent
   ],
   imports: [
     BrowserModule,
