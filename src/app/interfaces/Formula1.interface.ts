@@ -6,6 +6,22 @@ export interface IMRDataResponse {
  export interface IDriverTable {
     DriverTable?: IDriverTable;
     RaceTable?: RaceTable;
+    StandingsTable?: StandingsLists;
+ }
+
+ export interface StandingsLists {
+   StandingsLists: DriverStandings[];
+ }
+
+ export interface DriverStandings {
+    DriverStandings?: Driver[];
+ }
+
+ export interface Driver {
+    position: string;
+    points: string;
+    wins: string;
+    Driver?: any;
  }
 
  export interface RaceTable {

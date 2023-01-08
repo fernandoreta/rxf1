@@ -1,0 +1,28 @@
+<div>
+    <div class="col-3">
+        <select class="form-control"
+                (change)="onSelected($any($event.target).value)">
+            <option *ngFor="let season of seasons"
+                    [value]="season">{{ season }}</option>
+        </select>
+        </div>
+    <div>
+        <table class="table mb-0" *ngIf="standings$ | async as standings">
+            <thead>
+                <tr>
+                <th>Position</th>
+                <th>Points</th>
+                <th>Wins</th>
+                <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let standing of standings">
+                    <td>{{ standing.position }}</td>
+                    <td>{{ standing.points }}</td>
+                    <td>{{ standing.wins }}</td>
+                    <td>{{ standing.Driver.givenName }} {{ standing.Driver.familyName }}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>

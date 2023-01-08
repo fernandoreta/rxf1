@@ -11,6 +11,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QualifyingResultsComponent } from './qualifying-results/qualifying-results.component';
+import { StandingsComponent } from './standings/standings.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { QualifyingResultsComponent } from './qualifying-results/qualifying-resu
     DriversComponent,
     RacesComponent,
     HomeComponent,
-    QualifyingResultsComponent
+    QualifyingResultsComponent,
+    StandingsComponent
   ],
   imports: [
     BrowserModule,

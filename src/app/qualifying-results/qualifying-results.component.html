@@ -1,9 +1,19 @@
 <div>
     <div class="col-3">
+        <span>Select Year</span>
         <select class="form-control"
                 (change)="onSelected($any($event.target).value)">
             <option *ngFor="let season of seasons"
                     [value]="season">{{ season }}</option>
+        </select>
+        </div>
+    <div>
+    <div class="col-3">
+        <span>Select Race</span>
+        <select class="form-control"
+                (change)="onSelectedRace($any($event.target).value)">
+            <option *ngFor="let race of races"
+                    [value]="race">{{ race }}</option>
         </select>
         </div>
     <div>
