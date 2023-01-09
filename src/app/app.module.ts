@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QualifyingResultsComponent } from './qualifying-results/qualifying-results.component';
 import { StandingsComponent } from './standings/standings.component';
+import { BonusComponent } from './bonus/bonus.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { StandingsComponent } from './standings/standings.component';
     RacesComponent,
     HomeComponent,
     QualifyingResultsComponent,
-    StandingsComponent
+    StandingsComponent,
+    BonusComponent
   ],
   imports: [
     BrowserModule,

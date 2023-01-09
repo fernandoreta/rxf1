@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BehaviorSubject, catchError, combineLatest, EMPTY, map, switchMap } from 'rxjs';
 import { IMRDataResponse } from '../interfaces/Formula1.interface';
 
 @Component({
   selector: 'app-qualifying-results',
   templateUrl: './qualifying-results.component.html',
-  styleUrls: ['./qualifying-results.component.scss']
+  styleUrls: ['./qualifying-results.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QualifyingResultsComponent implements OnInit {
 

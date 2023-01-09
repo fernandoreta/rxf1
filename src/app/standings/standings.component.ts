@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BehaviorSubject, catchError, EMPTY, map, switchMap } from 'rxjs';
 import { IMRDataResponse } from '../interfaces/Formula1.interface';
 
 @Component({
   selector: 'app-standings',
   templateUrl: './standings.component.html',
-  styleUrls: ['./standings.component.scss']
+  styleUrls: ['./standings.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StandingsComponent implements OnInit {
 
