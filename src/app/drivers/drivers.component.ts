@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { BehaviorSubject, catchError, combineLatest, EMPTY, map, switchMap } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-drivers',
@@ -17,8 +17,6 @@ export class DriversComponent implements AfterViewInit  {
   @ViewChild('paginatorPageSize') paginatorPageSize!: MatPaginator;
   @ViewChild('paginator') paginator!: MatPaginator;
 
-  error = 'No Data, Some problem occurred';
-  showError = false;
   seasons = [ 2018, 2019, 2020, 2021, 2022 ];
 
   displayedColumns: string[] = [
@@ -48,8 +46,6 @@ export class DriversComponent implements AfterViewInit  {
     }),
     catchError(err => {
       console.log(err);
-      this.error = err;
-      this.showError = true;
       return EMPTY;
   }));
 
