@@ -1,38 +1,25 @@
-<div>
-<div class="col-3">
+<div class="example-container mat-elevation-z8">
     <select class="form-control"
             (change)="onSelected($any($event.target).value)">
         <option *ngFor="let season of seasons"
                 [value]="season">{{ season }}</option>
     </select>
-    </div>
-<span *ngIf="showError">{{ error }}</span>
-<div *ngIf="!showError">
-    <table class="table mb-0" *ngIf="selectedDrivers$ | async as drivers">
-        <thead>
-            <tr>
-            <th>Code</th>
-            <th>Date Birth</th>
-            <th>Driver Id</th>
-            <th>Family Name</th>
-            <th>Given Name</th>
-            <th>Nationality</th>
-            <th>Permanent Number</th>
-            <th>URL</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let driver of drivers">
-            <td>{{ driver.code }}</td>
-            <td>{{ driver.dateOfBirth }}</td>
-            <td>{{ driver.driverId }}</td>
-            <td>{{ driver.familyName }}</td>
-            <td>{{ driver.givenName }}</td>
-            <td>{{ driver.nationality }}</td>
-            <td>{{ driver.permanentNumber }}</td>
-            <td>{{ driver.url }}</td>
-            </tr>
-        </tbody>
+</div>
+
+<div>
+    <div *ngIf="selectedDrivers$ | async as selectedDrivers">
+        <table mat-table [dataSource]="selectedDrivers" class="mat-elevation-z8">
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+              <td mat-cell *matCellDef="let emp">{{ emp[column] }}</td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let emprow; columns: displayedColumns"></tr>
         </table>
     </div>
+    <mat-paginator
+      #paginatorPageSize
+      [pageSizeOptions]="pageSizes"
+    ></mat-paginator>
 </div>

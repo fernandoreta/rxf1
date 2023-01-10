@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject, catchError, combineLatest, EMPTY, map, switchMap } from 'rxjs';
-import { ErgastServiceService } from '../ergast-service.service';
-import { IMRDataResponse } from '../interfaces/Formula1.interface';
 
 @Component({
   selector: 'app-drivers',
@@ -12,22 +12,37 @@ import { IMRDataResponse } from '../interfaces/Formula1.interface';
 })
 export class DriversComponent implements AfterViewInit  {
 
-  constructor(private ergastService: ErgastServiceService, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  showFirstLastButtons = true;
-  
+  @ViewChild('paginatorPageSize') paginatorPageSize!: MatPaginator;
+  @ViewChild('paginator') paginator!: MatPaginator;
+
   error = 'No Data, Some problem occurred';
   showError = false;
   seasons = [ 2018, 2019, 2020, 2021, 2022 ];
+
+  displayedColumns: string[] = [
+    'code',
+    'dateOfBirth',
+    'driverId',
+    'familyName',
+    'givenName',
+    'nationality',
+    'permanentNumber',
+    'url'
+  ];
+
+  dataSource = new MatTableDataSource();
   
   private yearSelectedSubject = new BehaviorSubject<number>(this.seasons[0]);
   yearSelectedAction$ = this.yearSelectedSubject.asObservable();
   selectedDrivers$ = this.yearSelectedAction$.pipe(
     switchMap(selectedYear => {
-      return this.http.get<IMRDataResponse>(`https://ergast.com/api/f1/${selectedYear}/drivers.json`)
+      return this.http.get<any>(`https://ergast.com/api/f1/${selectedYear}/drivers.json`)
       .pipe(
         map(data => {
-          return data?.MRData?.DriverTable?.Drivers;
+          this.dataSource.data = data?.MRData?.DriverTable?.Drivers;
+          return this.dataSource;
         })
       )
     }),
@@ -45,7 +60,7 @@ export class DriversComponent implements AfterViewInit  {
   }
 
   ngAfterViewInit() {
-    
+    this.dataSource.paginator = this.paginatorPageSize;
   }
 
 }
